@@ -67,7 +67,32 @@ public class TodoListController extends HttpServlet {
 }
 ```
 
+## CH 3 세션/쿠키/필터/리스너
 
+### 원하는 쿠키만 처리하는 과정
+
+쿠키의 기본적인 개념과 간단한 설정 부분들은 여러번 공부해봤지만 직접적으로 쿠키들을 배열로 받아와서 내가 원하는 쿠키를 찾아서 원하는 작업을 하는 것은 처음이었다.
+
+```java
+
+Cookie[] cookies = req.getCookies();
+
+Cookie cookie = findCookie(cookies, "remember-me");        
+
+private Cookie findCookie(Cookie[] cookies, String name) {
+
+        if (cookies == null || cookies.length == 0) {
+            return null;
+        }
+
+        Optional<Cookie> result = Arrays.stream(cookies)
+                .filter(ck -> ck.getName().equals(name))
+                .findFirst();
+
+        return result.isPresent() ? result.get() : null;
+
+    }
+```
 
 
 
