@@ -35,3 +35,39 @@ POST 요청이 중복해서 발생하는 경우를 막기 위한 방법
 - 브라우저는 GET방식으로 이동
 
 ![image](https://user-images.githubusercontent.com/111167712/229545634-72e63e06-e617-4624-9b63-6a4c7239122a.png)
+
+## CH 2 웹과 데이터베이스
+
+### ModelMapper 사용
+
+- DTO - VO 사이의 변환에서 주로 사용
+- 이전에는 DTO, VO 둘 다 사용하는 것은 코드가 많고 변환하는 과정이 번거로웠으나 이번에 둘 다 사용하는 합리적인 방법을 알게됨
+
+### Enum을 통한 싱글턴
+
+- Enum에 Instance 하나 만을 만들어서 싱글턴으로 만드는 방식은 자바에서 추천하는 싱글턴 사용 방식임
+- 최근 디자인 패턴 공부에서 알게 되었으나 실제로 써보는 것은 처음
+
+```java
+public enum TodoService {
+    INSTANCE;
+    
+    ...
+    
+}
+```
+
+```java
+public class TodoListController extends HttpServlet {
+
+    private TodoService todoService = TodoService.INSTANCE;
+    
+    ...
+    
+}
+```
+
+
+
+
+
